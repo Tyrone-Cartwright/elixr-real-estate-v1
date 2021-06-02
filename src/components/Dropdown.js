@@ -1,10 +1,37 @@
 import React from 'react';
+import { menuData } from '../data/MenuData';
+import { Button } from './Button';
+import {
+  DropdownContainer,
+  Icon,
+  CloseIcon,
+  DropdownWrapper,
+  DropdownMenu,
+  DropdownLink,
+  BtnWrap,
+} from './Dropdown.elements';
 
-const Dropdown = () => {
+const Dropdown = ({ isOpen, toggle }) => {
   return (
-    <div>
-      <h1>Dropdown</h1>
-    </div>
+    <DropdownContainer isOpen={isOpen} onClick={toggle}>
+      <Icon onClick={toggle}>
+        <CloseIcon />
+      </Icon>
+      <DropdownWrapper>
+        <DropdownMenu>
+          {menuData.map((item, index) => (
+            <DropdownLink to={item.link} key={index}>
+              {item.title}
+            </DropdownLink>
+          ))}
+        </DropdownMenu>
+        <BtnWrap>
+          <Button primary='true' round='true' big='true' to='/contact'>
+            Contact Us
+          </Button>
+        </BtnWrap>
+      </DropdownWrapper>
+    </DropdownContainer>
   );
 };
 
